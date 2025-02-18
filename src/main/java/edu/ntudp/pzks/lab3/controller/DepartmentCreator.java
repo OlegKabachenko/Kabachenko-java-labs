@@ -12,10 +12,11 @@ public class DepartmentCreator {
     private static final Map<String, List<String>> departments = Map.of(
             "Department of Software Engineering of Computer Systems", Arrays.asList("122", "121"),
             "Department of Information Technology and Computer Engineering", Arrays.asList("123","126"),
-            "Department of Marketing", Arrays.asList("075", "061"),
-            "Department of Management", Arrays.asList("073"),
-            "Department of Oil and Gas Engineering and Drilling", Arrays.asList("185", "184"),
-            "Department of Systems Analysis and Management", Arrays.asList("124")
+            "Department of Applied Economics, Entrepreneurship, and Public Administration", Arrays.asList("051", "076", "075"),
+            "Department of Management", Arrays.asList("073", "072"),
+            "Department of Chemistry and Chemical Engineering", Arrays.asList("161", "102"),
+            "Department of Oil and Gas Engineering and Drilling", Arrays.asList("185", "015.35", "184"),
+            "Department of Systems Analysis and Management", Arrays.asList("124", "125")
     );
 
     private static Map.Entry<String, List<String>> getRandomDepartmentName() {
@@ -27,8 +28,12 @@ public class DepartmentCreator {
         if (departments.containsKey(departmentName)) {
             return Map.entry(departmentName, departments.get(departmentName));
         } else {
-           return null;
+            return null;
         }
+    }
+
+    public static Department createTypicalDepartment(int groupCnt, boolean iscascadeSubdivisions) {
+        return createTypicalDepartment(getRandomDepartmentName(), groupCnt, iscascadeSubdivisions);
     }
 
     public static Department createTypicalDepartment() {
@@ -36,26 +41,44 @@ public class DepartmentCreator {
     }
 
     public static Department createTypicalDepartment(Map.Entry<String, List<String>> departmentData) {
-        int MAX_SPECIALITIES_CNT = 3;
+        return createTypicalDepartment(departmentData, random.nextInt(3)+1);
+    }
+
+    public static Department createTypicalDepartment(Map.Entry<String, List<String>> departmentData, int specialtiesCount) {
+        return createTypicalDepartment(departmentData, specialtiesCount, false);
+    }
+
+    public static Department createTypicalDepartment(Map.Entry<String, List<String>> departmentData, int specialtiesCount, boolean iscascadeSubdivisions) {
         String departmentName = departmentData.getKey();
         List<String> specialties = departmentData.getValue();
-        int specialtiesCount = random.nextInt(MAX_SPECIALITIES_CNT)+1;
+
         List<Group> groups = new ArrayList<>();
         Human head = HumanCreator.createTypicalHuman();
 
         specialtiesCount = Math.min(specialties.size(), specialtiesCount);
         List<String> selectedSpecialties = new ArrayList<>();
-        while (selectedSpecialties.size() < specialtiesCount) {
-            selectedSpecialties.add(specialties.get(random.nextInt(specialties.size())));
+
+        Collections.shuffle(specialties);
+        for (int i = 0; i < specialtiesCount; i++) {
+            selectedSpecialties.add(specialties.get(i));
         }
 
+        int numGroups = 1;
         for (String specialty : selectedSpecialties) {
-            int numGroups = random.nextInt(3) + 1;
+            if (!iscascadeSubdivisions){
+                numGroups = random.nextInt(3) + 1;
+            }
 
             int year = random.nextInt(6) + 20;
             for (int i = 0; i < numGroups; i++) {
                 String groupName = (specialty +"-"+year+"-"+(i+1));
-                groups.add(GroupCreator.createTypicalGroup(groupName));
+
+                Group group =  GroupCreator.createTypicalGroup(groupName);
+
+                if (iscascadeSubdivisions){
+                    group =  GroupCreator.createTypicalGroup(groupName, specialtiesCount);
+                }
+                groups.add(group);
             }
         }
         return new Department(departmentName, head, groups);

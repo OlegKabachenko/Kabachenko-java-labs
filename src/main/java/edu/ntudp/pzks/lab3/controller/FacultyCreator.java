@@ -11,9 +11,8 @@ public class FacultyCreator {
 
     public static final Map<String, List<String>> faculties = Map.of(
             "Faculty of Information Technologies", Arrays.asList("Department of Software Engineering of Computer Systems", "Department of Information Technology and Computer Engineering", "Department of Systems Analysis and Management"),
-            "Faculty of Finance and Economics", Arrays.asList("Department of Marketing"),
-            "Faculty of Management", Arrays.asList("Department of Management"),
-            "Faculty of Natural Sciences and Technologies", Arrays.asList("Department of Oil and Gas Engineering and Drilling")
+            "Faculty of Management", Arrays.asList("Department of Management", "Department of Applied Economics, Entrepreneurship, and Public Administration"),
+            "Faculty of Natural Sciences and Technologies", Arrays.asList("Department of Oil and Gas Engineering and Drilling", "Department of Chemistry and Chemical Engineering")
     );
 
     private static Map.Entry<String, List<String>> getRandomFacultyName() {
@@ -26,18 +25,34 @@ public class FacultyCreator {
     }
 
     public static Faculty createTypicalFaculty(Map.Entry<String, List<String>> facultyData) {
+        return createTypicalFaculty(facultyData, random.nextInt(3)+1, false);
+    }
+
+    public static Faculty createTypicalFaculty(int departmentsCount, boolean iscascadeSubdivisions) {
+        return createTypicalFaculty(getRandomFacultyName(), departmentsCount, iscascadeSubdivisions);
+    }
+
+    public static Faculty createTypicalFaculty(Map.Entry<String, List<String>> facultyData, int departmentsCount, boolean iscascadeSubdivisions) {
         String facultyName = facultyData.getKey();
         List<String> departments = facultyData.getValue();
         Human head = HumanCreator.createTypicalHuman();
         Faculty faculty = new Faculty(facultyName, head);
 
-        for (String departmentName : departments) {
+        departmentsCount = Math.min(departments.size(), departmentsCount);
+
+        Collections.shuffle(departments);
+        for (int i = 0; i < departmentsCount; i++) {
+            String departmentName = departments.get(i);
+
             Map.Entry<String, List<String>> departmentData = DepartmentCreator.getDepartmentDataByName(departmentName);
             if (departmentData != null) {
                 Department  department = DepartmentCreator.createTypicalDepartment(departmentData);
+
+                if (iscascadeSubdivisions) {
+                    department = DepartmentCreator.createTypicalDepartment(departmentData, departmentsCount, iscascadeSubdivisions);
+                }
                 faculty.addDepartment(department);
             }
-
         }
         return faculty;
     }

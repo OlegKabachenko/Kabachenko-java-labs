@@ -4,9 +4,7 @@ import edu.ntudp.pzks.lab3.model.Faculty;
 import edu.ntudp.pzks.lab3.model.University;
 import edu.ntudp.pzks.lab3.model.Human;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import static edu.ntudp.pzks.lab3.controller.PersonCreator.random;
 
@@ -19,17 +17,39 @@ public class UniversityCreator {
             "Lviv Polytechnic National University"
     );
 
+    private static String getRandomUniversityName() {
+        int index = random.nextInt(universities.size());
+        return universities.get(index);
+    }
+
     public static University createTypicalUniversity() {
-        String university = universities.get(random.nextInt(universities.size()));
-        return createTypicalUniversity(university);
+        return createTypicalUniversity(getRandomUniversityName() );
     }
 
     public static University createTypicalUniversity(String universityName) {
+        return createTypicalUniversity(universityName, random.nextInt(3)+1, false);
+    }
+
+
+    public static University createTypicalUniversity(int facultiesCount, boolean iscascadeSubdivisions) {
+        return createTypicalUniversity(getRandomUniversityName(), facultiesCount, iscascadeSubdivisions);
+    }
+
+
+    public static University createTypicalUniversity(String universityName, int facultiesCount, boolean iscascadeSubdivisions) {
         Human head = HumanCreator.createTypicalHuman();
         University university = new University(universityName, head);
+        List<Map.Entry<String, List<String>>> facultyList = new ArrayList<>(FacultyCreator.faculties.entrySet());
 
-        for (Map.Entry<String, List<String>> facultyData : FacultyCreator.faculties.entrySet()) {
-            Faculty faculty = FacultyCreator.createTypicalFaculty(facultyData);
+        facultiesCount = Math.min(FacultyCreator.faculties.size(), facultiesCount);
+
+        Collections.shuffle(facultyList);
+        for (int i = 0; i < facultiesCount; i++) {
+            Faculty faculty = FacultyCreator.createTypicalFaculty(facultyList.get(i));
+
+            if(iscascadeSubdivisions){
+                faculty = FacultyCreator.createTypicalFaculty(facultyList.get(i), facultiesCount, iscascadeSubdivisions);
+            }
             university.addFaculty(faculty);
         }
         return university;

@@ -23,8 +23,15 @@ public class GroupCreator{
         return createTypicalGroup(generateGroupName());
     }
 
-    public static Group createTypicalGroup(String groupName){
-        int studentCount = random.nextInt(11) + 20;
+    public static Group createTypicalGroup(String groupName) {
+        return createTypicalGroup(groupName, random.nextInt(11) + 20);
+    }
+
+    public static Group createTypicalGroup(int studentsInGroup) {
+        return createTypicalGroup(generateGroupName(), studentsInGroup);
+    }
+
+    public static Group createTypicalGroup(String groupName, int studentCount){
         List<Student> students = new ArrayList<>();
 
         for (int i = 0; i < studentCount; i++) {
