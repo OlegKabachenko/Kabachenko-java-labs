@@ -9,7 +9,7 @@ import java.util.*;
 public class FacultyCreator {
     private static final Random random = new Random();
 
-    public static final Map<String, List<String>> faculties = Map.of(
+    private static final Map<String, List<String>> faculties = Map.of(
             "Faculty of Information Technologies", Arrays.asList("Department of Software Engineering of Computer Systems", "Department of Information Technology and Computer Engineering", "Department of Systems Analysis and Management"),
             "Faculty of Management", Arrays.asList("Department of Management", "Department of Applied Economics, Entrepreneurship, and Public Administration"),
             "Faculty of Natural Sciences and Technologies", Arrays.asList("Department of Oil and Gas Engineering and Drilling", "Department of Chemistry and Chemical Engineering")
@@ -63,5 +63,9 @@ public class FacultyCreator {
 
     public static Faculty createEmptyFaculty(String name, Human head) {
         return new Faculty(name, head);
+    }
+
+    public static Map<String, List<String>> getFaculties(){
+        return faculties;
     }
 }
