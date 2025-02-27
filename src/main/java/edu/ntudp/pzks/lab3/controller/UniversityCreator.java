@@ -39,9 +39,10 @@ public class UniversityCreator {
     public static University createTypicalUniversity(String universityName, int facultiesCount, boolean iscascadeSubdivisions) {
         Human head = HumanCreator.createTypicalHuman();
         University university = new University(universityName, head);
-        List<Map.Entry<String, List<String>>> facultyList = new ArrayList<>(FacultyCreator.faculties.entrySet());
+        Map<String, List<String>> faculties = FacultyCreator.getFaculties();
+        List<Map.Entry<String, List<String>>> facultyList = new ArrayList<>(faculties.entrySet());
 
-        facultiesCount = Math.min(FacultyCreator.faculties.size(), facultiesCount);
+        facultiesCount = Math.min(faculties.size(), facultiesCount);
 
         Collections.shuffle(facultyList);
         for (int i = 0; i < facultiesCount; i++) {
