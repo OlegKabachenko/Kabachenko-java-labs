@@ -1,4 +1,4 @@
-package edu.ntudp.pzks.lab3.model;
+package edu.ntudp.pzks.lab4.model;
 
 public interface  CreatureInterface {
     public static enum Sex {

@@ -1,6 +1,6 @@
-package edu.ntudp.pzks.lab3.controller;
+package edu.ntudp.pzks.lab4.controller;
 
-import edu.ntudp.pzks.lab3.model.Human;
+import edu.ntudp.pzks.lab4.model.Human;
 
 public class HumanCreator extends PersonCreator {
     public static Human createTypicalHuman() {

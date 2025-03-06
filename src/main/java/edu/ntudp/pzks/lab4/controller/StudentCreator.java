@@ -1,6 +1,6 @@
-package edu.ntudp.pzks.lab3.controller;
+package edu.ntudp.pzks.lab4.controller;
 
-import edu.ntudp.pzks.lab3.model.Student;
+import edu.ntudp.pzks.lab4.model.Student;
 
 public class StudentCreator extends PersonCreator {
     public static Student createTypicalStudent() {
