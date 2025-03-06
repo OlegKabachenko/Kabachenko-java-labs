@@ -1,4 +1,4 @@
-package edu.ntudp.pzks.lab2;
+package edu.ntudp.pzks.lab3;
 
 import java.util.Random;
 import java.util.Scanner;
