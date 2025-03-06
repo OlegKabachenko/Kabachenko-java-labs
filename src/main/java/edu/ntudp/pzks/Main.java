@@ -1,6 +1,6 @@
 package edu.ntudp.pzks;
 
-import edu.ntudp.pzks.lr0.HelloWorld;
+import edu.ntudp.pzks.lab1.HelloWorld;
 import edu.ntudp.pzks.lab3.Matrix;
 
 public class Main {
