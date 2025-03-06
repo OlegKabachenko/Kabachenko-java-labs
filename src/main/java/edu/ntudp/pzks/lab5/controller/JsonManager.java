@@ -1,7 +1,7 @@
-package edu.ntudp.pzks.lab4.controller;
+package edu.ntudp.pzks.lab5.controller;
 
 import com.google.gson.Gson;
-import edu.ntudp.pzks.lab4.model.University;
+import edu.ntudp.pzks.lab5.model.University;
 
 import java.io.FileWriter;
 import java.io.IOException;
