@@ -1,4 +1,4 @@
-package edu.ntudp.pzks.lab4.model;
+package edu.ntudp.pzks.lab5.model;
 import java.util.UUID;
 import java.util.Objects;
 

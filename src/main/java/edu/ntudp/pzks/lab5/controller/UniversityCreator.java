@@ -1,12 +1,12 @@
-package edu.ntudp.pzks.lab4.controller;
+package edu.ntudp.pzks.lab5.controller;
 
-import edu.ntudp.pzks.lab4.model.Faculty;
-import edu.ntudp.pzks.lab4.model.University;
-import edu.ntudp.pzks.lab4.model.Human;
+import edu.ntudp.pzks.lab5.model.Faculty;
+import edu.ntudp.pzks.lab5.model.University;
+import edu.ntudp.pzks.lab5.model.Human;
 
 import java.util.*;
 
-import static edu.ntudp.pzks.lab4.controller.PersonCreator.random;
+import static edu.ntudp.pzks.lab5.controller.PersonCreator.random;
 
 public class UniversityCreator {
     private static final List<String> universities = Arrays.asList(

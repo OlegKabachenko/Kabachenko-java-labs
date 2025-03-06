@@ -1,7 +1,7 @@
-package edu.ntudp.pzks.lab4;
+package edu.ntudp.pzks.lab5;
 
-import edu.ntudp.pzks.lab4.controller.UniversityCreator;
-import edu.ntudp.pzks.lab4.model.University;
+import edu.ntudp.pzks.lab5.controller.UniversityCreator;
+import edu.ntudp.pzks.lab5.model.University;
 
 public class Run {
     public static void main(String[] args){

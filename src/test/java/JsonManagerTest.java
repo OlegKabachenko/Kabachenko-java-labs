@@ -1,6 +1,6 @@
-import edu.ntudp.pzks.lab4.controller.JsonManager;
-import edu.ntudp.pzks.lab4.controller.UniversityCreator;
-import edu.ntudp.pzks.lab4.model.University;
+import edu.ntudp.pzks.lab5.controller.JsonManager;
+import edu.ntudp.pzks.lab5.controller.UniversityCreator;
+import edu.ntudp.pzks.lab5.model.University;
 import org.junit.Assert;
 import org.junit.Test;
 

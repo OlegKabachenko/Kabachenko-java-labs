@@ -1,8 +1,8 @@
-package edu.ntudp.pzks.lab4.controller;
+package edu.ntudp.pzks.lab5.controller;
 
-import edu.ntudp.pzks.lab4.model.Group;
-import edu.ntudp.pzks.lab4.model.Human;
-import edu.ntudp.pzks.lab4.model.Student;
+import edu.ntudp.pzks.lab5.model.Group;
+import edu.ntudp.pzks.lab5.model.Human;
+import edu.ntudp.pzks.lab5.model.Student;
 
 import java.util.ArrayList;
 import java.util.List;
