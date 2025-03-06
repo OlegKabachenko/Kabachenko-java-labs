@@ -1,7 +1,7 @@
-package edu.ntudp.pzks.lab3.controller;
+package edu.ntudp.pzks.lab4.controller;
 
 import com.github.javafaker.Faker;
-import edu.ntudp.pzks.lab3.model.Human;
+import edu.ntudp.pzks.lab4.model.Human;
 import java.util.Random;
 
 abstract public class PersonCreator {

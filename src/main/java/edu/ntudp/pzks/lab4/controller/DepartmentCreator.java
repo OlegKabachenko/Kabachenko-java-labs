@@ -1,8 +1,8 @@
-package edu.ntudp.pzks.lab3.controller;
+package edu.ntudp.pzks.lab4.controller;
 
-import edu.ntudp.pzks.lab3.model.Department;
-import edu.ntudp.pzks.lab3.model.Group;
-import edu.ntudp.pzks.lab3.model.Human;
+import edu.ntudp.pzks.lab4.model.Department;
+import edu.ntudp.pzks.lab4.model.Group;
+import edu.ntudp.pzks.lab4.model.Human;
 
 import java.util.*;
 
