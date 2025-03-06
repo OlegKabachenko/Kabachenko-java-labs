@@ -1,4 +1,4 @@
-package edu.ntudp.pzks.lr0;
+package edu.ntudp.pzks.lab1;
 
 public class HelloWorld {
     public static void printHello() {
