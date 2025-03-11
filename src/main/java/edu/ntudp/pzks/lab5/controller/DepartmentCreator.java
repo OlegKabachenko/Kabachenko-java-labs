@@ -28,7 +28,7 @@ public class DepartmentCreator {
         if (departments.containsKey(departmentName)) {
             return Map.entry(departmentName, departments.get(departmentName));
         } else {
-           return null;
+            return null;
         }
     }
 

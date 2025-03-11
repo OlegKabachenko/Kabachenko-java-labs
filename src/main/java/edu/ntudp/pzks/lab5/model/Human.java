@@ -21,16 +21,32 @@ public class Human implements CreatureInterface{
         return firstName;
     }
 
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
     public String getLastName() {
         return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getMiddleName() {
         return middleName;
     }
 
+    public void setMiddleName(String middleName) {
+        this.middleName = middleName;
+    }
+
     public Sex getGender() {
         return gender;
+    }
+
+    public void setGender(Sex gender) {
+        this.gender = gender;
     }
 
     public String getName() {
@@ -57,4 +73,5 @@ public class Human implements CreatureInterface{
     public int hashCode() {
         return Objects.hash(firstName, lastName, middleName, id);
     }
+
 }
