@@ -10,10 +10,6 @@ public class Student extends Human {
         this.recordBookID = recordBookID;
     }
 
-    public String getStudentID() {
-        return recordBookID;
-    }
-
     public String getRecordBookID() {
         return recordBookID;
     }
