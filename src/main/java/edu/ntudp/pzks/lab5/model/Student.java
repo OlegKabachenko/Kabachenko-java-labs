@@ -3,7 +3,7 @@ package edu.ntudp.pzks.lab5.model;
 import java.util.Objects;
 
 public class Student extends Human {
-    private final String recordBookID;
+    private String recordBookID;
 
     public Student(String firstName, String middleName, String lastName, Sex gender, String recordBookID) {
         super(firstName, lastName, middleName, gender);
@@ -12,6 +12,10 @@ public class Student extends Human {
 
     public String getRecordBookID() {
         return recordBookID;
+    }
+
+    public void setRecordBookID(String recordBookID) {
+        this.recordBookID = recordBookID;
     }
 
     @Override
@@ -31,3 +35,4 @@ public class Student extends Human {
         return Objects.hash(super.hashCode(), recordBookID);
     }
 }
+
