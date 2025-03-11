@@ -30,11 +30,9 @@ public class UniversityCreator {
         return createTypicalUniversity(universityName, random.nextInt(3)+1, false);
     }
 
-
     public static University createTypicalUniversity(int facultiesCount, boolean iscascadeSubdivisions) {
         return createTypicalUniversity(getRandomUniversityName(), facultiesCount, iscascadeSubdivisions);
     }
-
 
     public static University createTypicalUniversity(String universityName, int facultiesCount, boolean iscascadeSubdivisions) {
         Human head = HumanCreator.createTypicalHuman();

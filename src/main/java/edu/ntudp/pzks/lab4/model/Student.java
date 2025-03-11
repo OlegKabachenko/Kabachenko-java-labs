@@ -3,19 +3,19 @@ package edu.ntudp.pzks.lab4.model;
 import java.util.Objects;
 
 public class Student extends Human {
-    private final String recordBookID;
+    private String recordBookID;
 
     public Student(String firstName, String middleName, String lastName, Sex gender, String recordBookID) {
         super(firstName, lastName, middleName, gender);
         this.recordBookID = recordBookID;
     }
 
-    public String getStudentID() {
+    public String getRecordBookID() {
         return recordBookID;
     }
 
-    public String getRecordBookID() {
-        return recordBookID;
+    public void setRecordBookID(String recordBookID) {
+        this.recordBookID = recordBookID;
     }
 
     @Override
