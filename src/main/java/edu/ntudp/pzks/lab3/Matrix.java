@@ -6,6 +6,7 @@ import java.util.stream.Stream;
 
 public class Matrix {
     private static final int MAX_SIZE = 20;
+    private static final int MIN_SIZE = 1;
     private static final int MIN_RANDOM = 1;
     private static final int MAX_RANDOM = 100;
     private static final Scanner scanner = new Scanner(System.in);
@@ -52,8 +53,8 @@ public class Matrix {
     }
 
     public static int[] getMatrixSizes() {
-        int rows = getValidInt("Enter the number of rows of the matrix:", 1, MAX_SIZE);
-        int cols = getValidInt("Enter the number of columns of the matrix:", 1, MAX_SIZE);
+        int rows = getValidInt("Enter the number of rows of the matrix:", MIN_SIZE, MAX_SIZE);
+        int cols = getValidInt("Enter the number of columns of the matrix:", MIN_SIZE, MAX_SIZE);
         return new int[]{rows, cols};
     }
 
