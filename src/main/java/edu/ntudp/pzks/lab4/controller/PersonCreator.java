@@ -7,14 +7,14 @@ import edu.ntudp.pzks.lab4.model.Sex;
 import java.util.Random;
 
 abstract public class PersonCreator {
-    public static final Random random = new Random();
-    public static final Faker faker = new Faker();
+    protected final Random random = new Random();
+    protected final Faker faker = new Faker();
 
-    protected static Sex getRandomGender() {
+    protected Sex getRandomGender() {
         return Sex.values()[random.nextInt(Sex.values().length)];
     }
 
-    protected static String[] generateRandomFullName() {
+    protected String[] generateRandomFullName() {
         return new String[]{
                 faker.name().firstName(),
                 faker.name().lastName(),
