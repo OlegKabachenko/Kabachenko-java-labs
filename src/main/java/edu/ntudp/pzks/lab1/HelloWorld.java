@@ -1,7 +1,7 @@
 package edu.ntudp.pzks.lab1;
 
 public class HelloWorld {
-    public static void printHello() {
+    public void printHello() {
         System.out.print("Hello world!");
     }
 }
