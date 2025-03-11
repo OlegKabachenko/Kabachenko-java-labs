@@ -9,12 +9,14 @@ public class JsonManagerTest {
     @Test
     public void testUniversitySerializationAndDeserialization() {
         String FILE_NAME = "file.txt";
+        UniversityCreator universitycreator = new UniversityCreator();
+        JsonManager jsonManager = new JsonManager();
 
-        University oldUniversity = UniversityCreator.createTypicalUniversity(2, true);
-        String json = JsonManager.convertUniversityToJson(oldUniversity);
-        JsonManager.writeJsonToFile(json, FILE_NAME);
+        University oldUniversity = universitycreator.createTypicalUniversity(2, true);
+        String json = jsonManager.convertUniversityToJson(oldUniversity);
+        jsonManager.writeJsonToFile(json, FILE_NAME);
 
-        University newUniversity = JsonManager.readUniversityFromFile(FILE_NAME);
+        University newUniversity = jsonManager.readUniversityFromFile(FILE_NAME);
 
         Assert.assertEquals(oldUniversity, newUniversity);
     }

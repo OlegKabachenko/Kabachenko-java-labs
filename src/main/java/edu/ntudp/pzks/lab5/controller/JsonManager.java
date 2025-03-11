@@ -9,13 +9,13 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 
 public class JsonManager {
-    private static final Gson gson = new Gson();
+    private final Gson gson = new Gson();
 
-    public static String convertUniversityToJson(University university) {
+    public String convertUniversityToJson(University university) {
         return gson.toJson(university);
     }
 
-    public static void writeJsonToFile(String json, String filePath) {
+    public void writeJsonToFile(String json, String filePath) {
         try (FileWriter writer = new FileWriter(filePath)) {
             writer.write(json);
         } catch (IOException e) {
@@ -23,7 +23,7 @@ public class JsonManager {
         }
     }
 
-    public static University readUniversityFromJson(String json) {
+    public University readUniversityFromJson(String json) {
         try{
             return gson.fromJson(json, University.class);
         }catch (Exception e) {
@@ -32,7 +32,7 @@ public class JsonManager {
         }
     }
 
-    public static University readUniversityFromFile(String filePath) {
+    public University readUniversityFromFile(String filePath) {
         try {
             String json = new String(Files.readAllBytes(Paths.get(filePath)));
             return readUniversityFromJson(json);

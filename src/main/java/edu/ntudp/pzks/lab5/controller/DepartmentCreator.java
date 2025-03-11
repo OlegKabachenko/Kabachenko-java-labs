@@ -7,9 +7,9 @@ import edu.ntudp.pzks.lab5.model.Human;
 import java.util.*;
 
 public class DepartmentCreator {
-    private static final Random random = new Random();
+    private final Random random = new Random();
 
-    private static final Map<String, List<String>> departments = Map.of(
+    private final Map<String, List<String>> departments = Map.of(
             "Department of Software Engineering of Computer Systems", Arrays.asList("122", "121"),
             "Department of Information Technology and Computer Engineering", Arrays.asList("123","126"),
             "Department of Applied Economics, Entrepreneurship, and Public Administration", Arrays.asList("051", "076", "075"),
@@ -19,12 +19,12 @@ public class DepartmentCreator {
             "Department of Systems Analysis and Management", Arrays.asList("124", "125")
     );
 
-    private static Map.Entry<String, List<String>> getRandomDepartmentName() {
+    private Map.Entry<String, List<String>> getRandomDepartmentName() {
         List<Map.Entry<String, List<String>>> entries = new ArrayList<>(departments.entrySet());
         return entries.get(random.nextInt(entries.size()));
     }
 
-    public static Map.Entry<String, List<String>> getDepartmentDataByName(String departmentName) {
+    public Map.Entry<String, List<String>> getDepartmentDataByName(String departmentName) {
         if (departments.containsKey(departmentName)) {
             return Map.entry(departmentName, departments.get(departmentName));
         } else {
@@ -32,28 +32,30 @@ public class DepartmentCreator {
         }
     }
 
-    public static Department createTypicalDepartment(int groupCnt, boolean iscascadeSubdivisions) {
+    public Department createTypicalDepartment(int groupCnt, boolean iscascadeSubdivisions) {
         return createTypicalDepartment(getRandomDepartmentName(), groupCnt, iscascadeSubdivisions);
     }
 
-    public static Department createTypicalDepartment() {
+    public Department createTypicalDepartment() {
         return createTypicalDepartment(getRandomDepartmentName());
     }
 
-    public static Department createTypicalDepartment(Map.Entry<String, List<String>> departmentData) {
+    public Department createTypicalDepartment(Map.Entry<String, List<String>> departmentData) {
         return createTypicalDepartment(departmentData, random.nextInt(3)+1);
     }
 
-    public static Department createTypicalDepartment(Map.Entry<String, List<String>> departmentData, int specialtiesCount) {
+    public Department createTypicalDepartment(Map.Entry<String, List<String>> departmentData, int specialtiesCount) {
         return createTypicalDepartment(departmentData, specialtiesCount, false);
     }
 
-    public static Department createTypicalDepartment(Map.Entry<String, List<String>> departmentData, int specialtiesCount, boolean iscascadeSubdivisions) {
+    public Department createTypicalDepartment(Map.Entry<String, List<String>> departmentData, int specialtiesCount, boolean iscascadeSubdivisions) {
         String departmentName = departmentData.getKey();
         List<String> specialties = departmentData.getValue();
+        HumanCreator humanCreator = new HumanCreator();
+        GroupCreator groupCreator = new GroupCreator();
 
         List<Group> groups = new ArrayList<>();
-        Human head = HumanCreator.createTypicalHuman();
+        Human head = humanCreator.createTypicalHuman();
 
         specialtiesCount = Math.min(specialties.size(), specialtiesCount);
         List<String> selectedSpecialties = new ArrayList<>();
@@ -73,10 +75,10 @@ public class DepartmentCreator {
             for (int i = 0; i < numGroups; i++) {
                 String groupName = (specialty +"-"+year+"-"+(i+1));
 
-                Group group =  GroupCreator.createTypicalGroup(groupName);
+                Group group =  groupCreator.createTypicalGroup(groupName);
 
                 if (iscascadeSubdivisions){
-                    group =  GroupCreator.createTypicalGroup(groupName, specialtiesCount);
+                    group =  groupCreator.createTypicalGroup(groupName, specialtiesCount);
                 }
                 groups.add(group);
             }
@@ -84,11 +86,11 @@ public class DepartmentCreator {
         return new Department(departmentName, head, groups);
     }
 
-    public static Department createDepartment(String name, Human head, List<Group> groups) {
+    public Department createDepartment(String name, Human head, List<Group> groups) {
         return new Department(name, head, groups);
     }
 
-    public static Department createEmptyDepartment(String name, Human head) {
+    public Department createEmptyDepartment(String name, Human head) {
         return new Department(name, head);
     }
 }
