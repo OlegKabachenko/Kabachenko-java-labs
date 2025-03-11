@@ -10,7 +10,7 @@ import java.util.Set;
 
 public class StudentCreator extends HumanCreator  {
 
-    public static String generateRandomRecordBookNumber(){
+    public String generateRandomRecordBookNumber(){
         StringBuilder recordBookNumber = new StringBuilder("S");
 
         for (int i = 0; i < 7; i++) {
@@ -21,7 +21,7 @@ public class StudentCreator extends HumanCreator  {
         return recordBookNumber.toString();
     }
 
-    public static List<Student> createStudentsList(int studentsNum){
+    public List<Student> createStudentsList(int studentsNum){
         List<Student> students = new ArrayList<>();
         Set<String> usedRecordBookNumbers = new HashSet<>();
 
@@ -41,7 +41,7 @@ public class StudentCreator extends HumanCreator  {
         return students;
     }
 
-    public static Student createTypicalStudent() {
+    public Student createTypicalStudent() {
         String[] names = generateRandomFullName();
         String recordBookNumber = generateRandomRecordBookNumber();
         Date birthDate = createValidBirthDate();
@@ -49,7 +49,7 @@ public class StudentCreator extends HumanCreator  {
         return new Student(names[0], names[1], names[2], recordBookNumber, birthDate);
     }
 
-    public static Student createStudent(String firstName, String middleName, String lastName, String recordBookNumber, Date birthDate) {
+    public Student createStudent(String firstName, String middleName, String lastName, String recordBookNumber, Date birthDate) {
         return new Student (firstName, middleName, lastName, recordBookNumber, birthDate);
     }
 }

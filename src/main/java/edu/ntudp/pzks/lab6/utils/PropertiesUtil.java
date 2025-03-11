@@ -7,21 +7,18 @@ import java.util.Properties;
 
 public final class PropertiesUtil {
 
-    private static final Properties PROPERTIES = new Properties();
-    private static final String PATH = "src/main/java/edu/ntudp/pzks/lab6/resources/database.properties";
+    private final Properties PROPERTIES = new Properties();
+    private final String PATH = "src/main/java/edu/ntudp/pzks/lab6/resources/database.properties";
 
-    static {
+    public PropertiesUtil(){
         loadProperties();
     }
 
-    private PropertiesUtil(){
-    }
-
-    public static String get(String key){
+    public String get(String key){
         return PROPERTIES.getProperty(key);
     }
 
-    private static void loadProperties(){
+    private void loadProperties(){
         try(InputStream resourceAsStream = new FileInputStream(PATH)){
             PROPERTIES.load(resourceAsStream);
         } catch (IOException e) {

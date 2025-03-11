@@ -9,11 +9,12 @@ import java.util.Scanner;
 public class Run {
     public static void main(String[] args){
         StudentRepository studentRepo = new StudentRepository();
+        StudentCreator studentCreator = new StudentCreator();
 
         List<Student> allStudents = studentRepo.getAll();
 
         if(allStudents.isEmpty()) {
-            List<Student> students = StudentCreator.createStudentsList(30);
+            List<Student> students = studentCreator.createStudentsList(30);
 
             for (Student student : students) {
                 studentRepo.save(student);
