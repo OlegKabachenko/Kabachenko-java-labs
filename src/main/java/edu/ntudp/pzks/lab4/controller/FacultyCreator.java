@@ -7,35 +7,37 @@ import edu.ntudp.pzks.lab4.model.Human;
 import java.util.*;
 
 public class FacultyCreator {
-    private static final Random random = new Random();
+    private final Random random = new Random();
 
-    private static final Map<String, List<String>> faculties = Map.of(
+    private final Map<String, List<String>> faculties = Map.of(
             "Faculty of Information Technologies", Arrays.asList("Department of Software Engineering of Computer Systems", "Department of Information Technology and Computer Engineering", "Department of Systems Analysis and Management"),
             "Faculty of Management", Arrays.asList("Department of Management", "Department of Applied Economics, Entrepreneurship, and Public Administration"),
             "Faculty of Natural Sciences and Technologies", Arrays.asList("Department of Oil and Gas Engineering and Drilling", "Department of Chemistry and Chemical Engineering")
     );
 
-    private static Map.Entry<String, List<String>> getRandomFacultyName() {
+    private Map.Entry<String, List<String>> getRandomFacultyName() {
         List<Map.Entry<String, List<String>>> entries = new ArrayList<>(faculties.entrySet());
         return entries.get(random.nextInt(entries.size()));
     }
 
-    public static Faculty createTypicalFaculty() {
+    public Faculty createTypicalFaculty() {
         return createTypicalFaculty(getRandomFacultyName());
     }
 
-    public static Faculty createTypicalFaculty(Map.Entry<String, List<String>> facultyData) {
+    public Faculty createTypicalFaculty(Map.Entry<String, List<String>> facultyData) {
         return createTypicalFaculty(facultyData, random.nextInt(3)+1, false);
     }
 
-    public static Faculty createTypicalFaculty(int departmentsCount, boolean iscascadeSubdivisions) {
+    public Faculty createTypicalFaculty(int departmentsCount, boolean iscascadeSubdivisions) {
         return createTypicalFaculty(getRandomFacultyName(), departmentsCount, iscascadeSubdivisions);
     }
 
-    public static Faculty createTypicalFaculty(Map.Entry<String, List<String>> facultyData, int departmentsCount, boolean iscascadeSubdivisions) {
+    public Faculty createTypicalFaculty(Map.Entry<String, List<String>> facultyData, int departmentsCount, boolean iscascadeSubdivisions) {
         String facultyName = facultyData.getKey();
         List<String> departments = facultyData.getValue();
-        Human head = HumanCreator.createTypicalHuman();
+        HumanCreator humanCreator = new HumanCreator();
+        DepartmentCreator departmentCreator = new DepartmentCreator();
+        Human head = humanCreator.createTypicalHuman();
         Faculty faculty = new Faculty(facultyName, head);
 
         departmentsCount = Math.min(departments.size(), departmentsCount);
@@ -44,12 +46,12 @@ public class FacultyCreator {
         for (int i = 0; i < departmentsCount; i++) {
             String departmentName = departments.get(i);
 
-            Map.Entry<String, List<String>> departmentData = DepartmentCreator.getDepartmentDataByName(departmentName);
+            Map.Entry<String, List<String>> departmentData = departmentCreator.getDepartmentDataByName(departmentName);
             if (departmentData != null) {
-                Department  department = DepartmentCreator.createTypicalDepartment(departmentData);
+                Department  department = departmentCreator.createTypicalDepartment(departmentData);
 
                 if (iscascadeSubdivisions) {
-                    department = DepartmentCreator.createTypicalDepartment(departmentData, departmentsCount, iscascadeSubdivisions);
+                    department = departmentCreator.createTypicalDepartment(departmentData, departmentsCount, iscascadeSubdivisions);
                 }
                 faculty.addDepartment(department);
             }
@@ -57,15 +59,15 @@ public class FacultyCreator {
         return faculty;
     }
 
-    public static Faculty createFaculty(String name, Human head, List<Department> departments) {
+    public Faculty createFaculty(String name, Human head, List<Department> departments) {
         return new Faculty(name, head, departments);
     }
 
-    public static Faculty createEmptyFaculty(String name, Human head) {
+    public Faculty createEmptyFaculty(String name, Human head) {
         return new Faculty(name, head);
     }
 
-    public static Map<String, List<String>> getFaculties(){
+    public Map<String, List<String>> getFaculties(){
         return faculties;
     }
 }
