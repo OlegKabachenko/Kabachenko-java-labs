@@ -7,10 +7,10 @@ import java.util.Calendar;
 import java.util.Random;
 
 public abstract class HumanCreator {
-    public static final Random random = new Random();
-    public static final Faker faker = new Faker();
+    public final Random random = new Random();
+    public final Faker faker = new Faker();
 
-    protected static String[] generateRandomFullName() {
+    protected String[] generateRandomFullName() {
         return new String[]{
                 faker.name().firstName(),
                 faker.name().lastName(),
@@ -18,7 +18,7 @@ public abstract class HumanCreator {
         };
     }
 
-    public static Date createValidBirthDate() {
+    public Date createValidBirthDate() {
         Date birthDate = null;
         boolean validBirthDate = false;
 

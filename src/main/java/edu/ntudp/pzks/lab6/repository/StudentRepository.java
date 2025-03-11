@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class StudentRepository implements HumanRepository<Student>{
+    ConnectionManager connectionManager = new ConnectionManager();
+
     private List<Student> extractStudents(ResultSet resultSet) {
         List<Student> students = new ArrayList<>();
         while (true) {
@@ -40,7 +42,7 @@ public class StudentRepository implements HumanRepository<Student>{
             String query = "INSERT INTO Students (first_name, middle_name, last_name, birth_date, record_book_number) " +
                     "VALUES (?, ?, ?, ?, ?)";
 
-            try (Connection connection = ConnectionManager.open();
+            try (Connection connection = connectionManager.open();
                  PreparedStatement preparedStatement = connection.prepareStatement(query)){
                 preparedStatement.setString(1, student.getFirstName());
                 preparedStatement.setString(2, student.getMiddleName());
@@ -63,7 +65,7 @@ public class StudentRepository implements HumanRepository<Student>{
         String query = "SELECT * FROM `Students`";
         List<Student> students;
 
-        try (Connection connection = ConnectionManager.open();
+        try (Connection connection = connectionManager.open();
              PreparedStatement preparedStatement = connection.prepareStatement(query);
              ResultSet resultSet = preparedStatement.executeQuery()) {
             students = extractStudents(resultSet);
@@ -79,7 +81,7 @@ public class StudentRepository implements HumanRepository<Student>{
         String query = "SELECT * FROM `Students` WHERE MONTH(birth_date) = ?";
         List<Student> students;
 
-        try (Connection connection = ConnectionManager.open();
+        try (Connection connection = connectionManager.open();
              PreparedStatement preparedStatement = connection.prepareStatement(query)) {
             preparedStatement.setInt(1, month);
 
@@ -96,7 +98,7 @@ public class StudentRepository implements HumanRepository<Student>{
     public void delete(Student student) {
         String query = "DELETE FROM `Students` WHERE `id` = ?";
 
-        try (Connection connection = ConnectionManager.open();
+        try (Connection connection = connectionManager.open();
              PreparedStatement preparedStatement = connection.prepareStatement(query)) {
 
             preparedStatement.setLong(1, student.getId());

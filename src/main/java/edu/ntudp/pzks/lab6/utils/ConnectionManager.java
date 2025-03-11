@@ -5,12 +5,13 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class ConnectionManager {
+    PropertiesUtil propertiesUtil = new PropertiesUtil();
 
-    private static final String URL = PropertiesUtil.get("db.url");
-    private static final String USER = PropertiesUtil.get("db.user");
-    private static final String PASSWORD = PropertiesUtil.get("db.password");
+    private final String URL = propertiesUtil.get("db.url");
+    private final String USER = propertiesUtil.get("db.user");
+    private final String PASSWORD = propertiesUtil.get("db.password");
 
-    public static Connection open() {
+    public Connection open() {
         try {
             return DriverManager.getConnection(URL, USER, PASSWORD);
         } catch (SQLException e) {
