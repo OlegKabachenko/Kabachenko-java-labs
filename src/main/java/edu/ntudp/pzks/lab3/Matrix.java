@@ -5,11 +5,11 @@ import java.util.Scanner;
 import java.util.stream.Stream;
 
 public class Matrix {
-    private static final int MAX_SIZE = 20;
-    private static final int MIN_SIZE = 1;
-    private static final int MIN_RANDOM = 1;
-    private static final int MAX_RANDOM = 100;
-    private static final Scanner scanner = new Scanner(System.in);
+    private final int MAX_SIZE = 20;
+    private final int MIN_SIZE = 1;
+    private final int MIN_RANDOM = 1;
+    private final int MAX_RANDOM = 100;
+    private final Scanner scanner = new Scanner(System.in);
     private int[][] matrix;
 
     public static void main(String[] args) {
@@ -36,10 +36,12 @@ public class Matrix {
         this.matrix = matrix;
     }
 
-    public static int getValidInt(String text, int minVal, int maxVal) {
+    public int getValidInt(String text, int minVal, int maxVal) {
         int size;
+
         while (true) {
-            System.out.print(text);
+            System.out.println(text);
+
             if (scanner.hasNextInt()) {
                 size = scanner.nextInt();
                 if (size >= minVal && size <= maxVal) {
@@ -52,7 +54,7 @@ public class Matrix {
         }
     }
 
-    public static int[] getMatrixSizes() {
+    public int[] getMatrixSizes() {
         int rows = getValidInt("Enter the number of rows of the matrix:", MIN_SIZE, MAX_SIZE);
         int cols = getValidInt("Enter the number of columns of the matrix:", MIN_SIZE, MAX_SIZE);
         return new int[]{rows, cols};
@@ -172,5 +174,25 @@ public class Matrix {
 
     public int[][] getMatrix() {
         return matrix;
+    }
+
+    public int getMAX_SIZE() {
+        return MAX_SIZE;
+    }
+
+    public int getMIN_SIZE() {
+        return MIN_SIZE;
+    }
+
+    public int getMIN_RANDOM() {
+        return MIN_RANDOM;
+    }
+
+    public int getMAX_RANDOM() {
+        return MAX_RANDOM;
+    }
+
+    public Scanner getScanner() {
+        return scanner;
     }
 }
