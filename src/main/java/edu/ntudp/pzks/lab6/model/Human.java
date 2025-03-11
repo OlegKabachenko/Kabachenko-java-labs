@@ -101,4 +101,8 @@ public abstract class Human {
                 ", id=" + id +
                 '}';
     }
+
+    public int getNAME_MAX_LENGTH() {
+        return NAME_MAX_LENGTH;
+    }
 }
