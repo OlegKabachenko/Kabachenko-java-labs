@@ -1,8 +1,8 @@
-package edu.ntudp.pzks.lab3.controller;
+package edu.ntudp.pzks.lab4.controller;
 
-import edu.ntudp.pzks.lab3.model.Group;
-import edu.ntudp.pzks.lab3.model.Human;
-import edu.ntudp.pzks.lab3.model.Student;
+import edu.ntudp.pzks.lab4.model.Group;
+import edu.ntudp.pzks.lab4.model.Human;
+import edu.ntudp.pzks.lab4.model.Student;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,8 +23,15 @@ public class GroupCreator{
         return createTypicalGroup(generateGroupName());
     }
 
-    public static Group createTypicalGroup(String groupName){
-        int studentCount = random.nextInt(11) + 20;
+    public static Group createTypicalGroup(String groupName) {
+        return createTypicalGroup(groupName, random.nextInt(11) + 20);
+    }
+
+    public static Group createTypicalGroup(int studentsInGroup) {
+        return createTypicalGroup(generateGroupName(), studentsInGroup);
+    }
+
+    public static Group createTypicalGroup(String groupName, int studentCount){
         List<Student> students = new ArrayList<>();
 
         for (int i = 0; i < studentCount; i++) {

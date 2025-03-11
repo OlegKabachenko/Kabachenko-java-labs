@@ -2,7 +2,7 @@ package edu.ntudp.pzks;
 
 import edu.ntudp.pzks.lr0.HelloWorld;
 import edu.ntudp.pzks.lab2.Matrix;
-import edu.ntudp.pzks.lab3.Run;
+import edu.ntudp.pzks.lab4.Run;
 
 public class Main {
     public static void main(String[] args){

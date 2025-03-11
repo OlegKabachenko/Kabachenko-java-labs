@@ -1,4 +1,4 @@
-package edu.ntudp.pzks.lab3.model;
+package edu.ntudp.pzks.lab4.model;
 
 import java.util.Objects;
 
@@ -15,12 +15,12 @@ abstract public class OrganizationalUnit {
         return name;
     }
 
-    public Human getHead() {
-        return head;
-    }
-
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Human getHead() {
+        return head;
     }
 
     public void setHead(Human head) {

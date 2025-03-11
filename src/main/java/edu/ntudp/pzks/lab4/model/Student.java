@@ -1,4 +1,4 @@
-package edu.ntudp.pzks.lab3.model;
+package edu.ntudp.pzks.lab4.model;
 
 import java.util.Objects;
 
