@@ -5,7 +5,7 @@ import edu.ntudp.pzks.lab4.model.University;
 
 public class Run {
     public static void main(String[] args){
-        UniversityCreator universitycreator = new UniversityCreator();
+         UniversityCreator universitycreator = new UniversityCreator();
 
          University  university = universitycreator.createTypicalUniversity();
          System.out.println(university);
